@@ -3,14 +3,18 @@ package com.introtoandroid.lab6;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.introtoandroid.lab6.asyncs.insert;
+import com.introtoandroid.lab6.asyncs.pull;
 import com.introtoandroid.lab6.data.LabDatabase;
 import com.introtoandroid.lab6.entities.Person;
+import com.introtoandroid.lab6.entities.PersonsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 String name = nameField.getText().toString();
                 Toast t = Toast.makeText(getApplicationContext(), "submit: " + name, Toast.LENGTH_LONG);
                 t.show();
+                Person p = new Person();
+                p.setName(name);
+                nameField.getText().clear();
+                insert i = new insert(labDB);
+                i.execute(p);
                 /*new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -53,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast t = Toast.makeText(getApplicationContext(), "show button clicked", Toast.LENGTH_LONG);
                 t.show();
+                pull p = new pull(labDB);
+                p.execute();
+                Intent i = new Intent(MainActivity.this, PersonsActivity.class);
+                startActivity(i);
             }
         });
 

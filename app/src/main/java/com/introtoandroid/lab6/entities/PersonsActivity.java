@@ -3,6 +3,7 @@ package com.introtoandroid.lab6.entities;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ public class PersonsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons);
+
+        Toast.makeText(this, "in personactivity", Toast.LENGTH_SHORT).show();
 
         listView = findViewById(R.id.personName);
 
