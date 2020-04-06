@@ -5,6 +5,7 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,9 @@ import com.introtoandroid.lab6.asyncs.pull;
 import com.introtoandroid.lab6.data.LabDatabase;
 import com.introtoandroid.lab6.entities.Person;
 import com.introtoandroid.lab6.entities.PersonsActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +66,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast t = Toast.makeText(getApplicationContext(), "show button clicked", Toast.LENGTH_LONG);
                 t.show();
-                pull p = new pull(labDB);
+                //List<Person> pp = labDB.personDao().getAllPersons();
+                //List<Person> pp = new ArrayList<Person>();
+                //pp.add(labDB.personDao().getAllPersons());
+               // List<> = new List<>()labDB.personDao().getAllPersons();
+                pull p = new pull(labDB, getApplicationContext());
                 p.execute();
                 Intent i = new Intent(MainActivity.this, PersonsActivity.class);
                 startActivity(i);
